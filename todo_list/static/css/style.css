@@ -87,5 +87,24 @@ nav ul li a:active {
 }
 
 .messages li.info{
+    display: inline-block;
     background-color: lawngreen;
+}
+.note {
+    width: 20%;
+    float: left;
+    margin-right: 20px; /* Přidáme mezery mezi kartami */
+    border: 1px solid #ccc; /* Přidáme ohraničení kolem karty */
+    padding: 10px; /* Přidáme vnitřní odsazení pro vzhled karty */
+    margin-bottom: 20px; /* Přidáme mezery pod každou kartou */
+}
+
+.note .title {
+    font-weight: bold; /* Přidáme tučné písmo pro titul */
+    border-bottom: 1px solid #ccc; /* Přidáme čáru pod titulem */
+    padding-bottom: 5px; /* Přidáme mezery pod titulem */
+}
+
+.note .description {
+    margin-top: 10px; /* Přidáme mezery mezi titulem a popisem */
 }
