@@ -26,6 +26,7 @@ def add_note(request):
         form = NoteForm()
     return render(request, "add_note.html", {"form":form})
 
+
 @login_required()
 def edit_note(request, note_id):
     note= get_object_or_404(Note,id=note_id)

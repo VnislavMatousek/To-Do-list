@@ -11,6 +11,8 @@
                 </div>
                 <div class="description">
                     {{ note.formatted_description|safe }}
+                </div>
+                <div class="btns">
                     <a href="{% url "edit_note" note.id %}">Edit note</a>
                     <a href="{% url "delete_note" note.id %}">Delete</a>
                 </div>
