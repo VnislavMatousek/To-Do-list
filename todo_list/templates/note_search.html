@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>{% block title %}Search notes{% endblock %}</h1>
+
+    {% if user.is_authenticated %}
+
+        <form method="get" action="{% url 'note_search' %}">
+            {{ form.as_p }}
+            <button type="submit">Search</button>
+        </form>
+
+        <h2>Search Results:</h2>
+        {% for note in notes %}
+            <div class="note">
+                <div class="title">
+                    {{ note.title }}
+                </div>
+                <div class="description">
+                    {{ note.formatted_description|safe }}
+                </div>
+                <div class="btns">
+                    <button type="button"><a href="{% url "edit_note" note.id %}">Edit note</a></button>
+                    <button type="button"><a href="{% url "delete_note" note.id %}">Delete</a></button>
+                </div>
+            </div>
+        {% endfor %}
+
+    {% else %}
+    {% endif %}
+{% endblock %}

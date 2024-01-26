@@ -1,8 +1,12 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>{% block title %}Titulní strana{% endblock %}</h1>
+
     {% if user.is_authenticated %}
+        <h1>{% block title %}Notes{% endblock %}</h1>
+        <div class="search">
+            <button type="button"><a href="{% url "note_search" %}">Search</a></button>
+        </div>
 
         {% for note in notes %}
             <div class = "note">
@@ -13,8 +17,8 @@
                     {{ note.formatted_description|safe }}
                 </div>
                 <div class="btns">
-                    <a href="{% url "edit_note" note.id %}">Edit note</a>
-                    <a href="{% url "delete_note" note.id %}">Delete</a>
+                    <button type="button"><a href="{% url "edit_note" note.id %}">Edit note</a></button>
+                    <button type="button"><a href="{% url "delete_note" note.id %}">Delete</a></button>
                 </div>
             </div>
 

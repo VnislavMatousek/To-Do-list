@@ -8,18 +8,19 @@
     </head>
     <body>
     <nav>
+        <div class="maintext"><a href="{% url "index" %}">To do list</a></div>
         <ul>
-            <li><a href="{% url "index" %}">Titulní strana</a></li>
+            <li><a href="{% url "index" %}">Notes page</a></li>
             {% if user.is_authenticated %}
                 {% if user.is_staff %}
-                    <li><a href="{% url "admin:index" %}">Administrace</a></li>
+                    <li><a href="{% url "admin:index" %}">Admin page</a></li>
                 {% endif %}
-                <li><a href="{% url "add_note" %}">Přidání note</a></li>
-                <li><a href="{% url "password_change" %}">Změna hesla</a></li>
-                <li><a href="{% url "logout" %}">Odhlášení</a></li>
+                <li><a href="{% url "add_note" %}">Add note</a></li>
+                <li><a href="{% url "password_change" %}">edit password</a></li>
+                <li><a href="{% url "logout" %}">Logout</a></li>
             {% else %}
-                <li><a href="{% url "registration" %}">Registrace</a></li>
-                <li><a href="{% url "login" %}">Přihlášení</a></li>
+                <li><a href="{% url "registration" %}">Registration</a></li>
+                <li><a href="{% url "login" %}">Login</a></li>
             {% endif %}
         </ul>
     </nav>

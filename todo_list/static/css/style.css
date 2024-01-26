@@ -19,22 +19,34 @@ a{
 }
 nav {
     display: flex;
-    align-items: flex-end;
-    justify-content: space-around;
+    align-items: center; /* Updated to center the content vertically */
+    justify-content: space-between;
     padding: 10px 30px;
     background-color: white;
-    box-shadow: 2px 2px 20px rgba(90,118,253,0.13);
+    box-shadow: 2px 2px 20px rgba(90, 118, 253, 0.13);
     z-index: 1;
-    width: 100%
+    width: 100%;
+
 }
 
-nav ul{
+.maintext {
+    font-size: 1.8rem; /* Adjust the font size as needed */
+    font-weight: bold;
+    color: limegreen;
+    text-transform: uppercase;
+}
+
+.maintext a {
+    text-decoration: none;
+    color: inherit; /* Inherit the color from the parent (.maintext) */
+}
+
+nav ul {
     display: flex;
     margin: 0;
-    padding-left: 55%;
 }
 
-nav ul li a{
+nav ul li a {
     height: 35px;
     line-height: 40px;
     margin: 10px;
@@ -48,13 +60,14 @@ nav ul li a{
     border-radius: 10px;
     position: relative;
     overflow: hidden;
-    width: 120px;
+    width: 121px;
     justify-content: center;
 }
 
 nav ul li a {
     z-index: 1;
 }
+
 nav ul li a:after {
     position: absolute;
     content: "";
@@ -66,24 +79,19 @@ nav ul li a:after {
     background-color: darkseagreen;
     transition: all 0.3s ease;
 }
+
 nav ul li a:hover {
     color: black;
     transform: scale(1.050);
 }
+
 nav ul li a:hover:after {
     left: 0;
     width: 100%;
-
 }
+
 nav ul li a:active {
     top: 2px;
-
-}
-
-.messages li {
-    display: block;
-    margin: 0;
-    padding: 10px;
 }
 
 .messages li.info{
@@ -107,4 +115,12 @@ nav ul li a:active {
 
 .note .description {
     margin-top: 10px; /* Přidáme mezery mezi titulem a popisem */
+}
+
+.search{
+    margin-bottom: 15px;
+}
+
+.maintext{
+
 }

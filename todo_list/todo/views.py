@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 
+from .forms import NoteSearchForm
 
 from .models import Note
 from .forms import NoteForm
@@ -26,6 +27,18 @@ def add_note(request):
         form = NoteForm()
     return render(request, "add_note.html", {"form":form})
 
+@login_required()
+def note_search(request):
+    form = NoteSearchForm(request.GET)
+    notes = Note.objects.all()
+
+    if form.is_valid():
+        title_query = form.cleaned_data.get('title')
+        if title_query:
+            notes = notes.filter(title__icontains=title_query)
+
+    context = {'form': form, 'notes': notes}
+    return render(request, 'note_search.html', context)
 
 @login_required()
 def edit_note(request, note_id):
