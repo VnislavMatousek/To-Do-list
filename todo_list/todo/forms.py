@@ -1,7 +1,13 @@
 from django.forms import ModelForm
 from django import forms
 
-from .models import Note
+from .models import Note, Category
+
+class CategoryForm(ModelForm):
+    class Meta:
+        model = Category
+        exclude = ["user"]
+
 
 class NoteForm(ModelForm):
     class Meta:

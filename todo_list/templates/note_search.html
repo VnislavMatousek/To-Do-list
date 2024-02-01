@@ -23,6 +23,13 @@
                     <button type="button"><a href="{% url "edit_note" note.id %}">Edit note</a></button>
                     <button type="button"><a href="{% url "delete_note" note.id %}">Delete</a></button>
                 </div>
+                <ul>
+                    {% for category in note.categories.all %}
+
+                        <li>{{ category }}</li>
+
+                    {% endfor %}
+                </ul>
             </div>
         {% endfor %}
 
