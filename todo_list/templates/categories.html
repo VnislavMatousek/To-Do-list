@@ -4,7 +4,8 @@
 
 
         <h1>{% block title %}Categories{% endblock %}</h1>
-        <ul>
+        <ul class="categories">
+            <p>Your categories:</p>
             {% for category in categories %}
 
                 <li><a href="{% url "edit_category" category.id %}">{{ category }}</a></li>

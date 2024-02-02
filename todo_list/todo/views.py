@@ -22,16 +22,17 @@ def categories(request):
 @login_required()
 def add_note(request):
     if request.method == "POST":
-        form = NoteForm(request.POST)
+        form = NoteForm(request.POST, user=request.user)
 
         if form.is_valid():
             instance = form.save(commit=False)
             instance.user = request.user
             instance.save()
-            messages.add_message(request, messages.INFO, "Věc byla přidána.")
+            form.save_m2m()
+            messages.add_message(request, messages.INFO, "Note was added.")
             return redirect("index")
     else:
-        form = NoteForm()
+        form = NoteForm(user=request.user)
     return render(request, "add_note.html", {"form":form})
 
 @login_required()
@@ -43,7 +44,7 @@ def add_category(request):
             instance = form.save(commit=False)
             instance.user = request.user
             instance.save()
-            messages.add_message(request, messages.INFO, "Kategorie byla přidána.")
+            messages.add_message(request, messages.INFO, "Category was added.")
             return redirect("note_categories")
     else:
         form = CategoryForm()
@@ -64,16 +65,16 @@ def note_search(request):
 
 @login_required()
 def edit_note(request, note_id):
-    note= get_object_or_404(Note,id=note_id)
+    note = get_object_or_404(Note,id=note_id)
     if request.method == "POST":
-        form = NoteForm(request.POST, instance=note)
+        form = NoteForm(request.POST, instance=note, user=request.user)
 
         if form.is_valid():
             form.save()
-            messages.add_message(request, messages.INFO, "Poznámka byla upravena.")
+            messages.add_message(request, messages.INFO, "Note was edited.")
             return redirect("index")  # Upravte název cesty podle vašich potřeb
     else:
-        form = NoteForm(instance=note)
+        form = NoteForm(instance=note, user=request.user)
 
     return render(request, "edit_note.html", {"form": form, "note": note})
 
@@ -85,7 +86,7 @@ def edit_category(request, category_id):
 
         if form.is_valid():
             form.save()
-            messages.add_message(request, messages.INFO, "Kategorie byla upravena.")
+            messages.add_message(request, messages.INFO, "Category was edited.")
             return redirect("note_categories")  # Upravte název cesty podle vašich potřeb
     else:
         form = CategoryForm(instance=category)
@@ -97,7 +98,7 @@ def delete_note(request, note_id):
     note = get_object_or_404(Note, id=note_id, user=request.user)
 
     note.delete()
-    messages.add_message(request, messages.INFO, "Poznámka byla smazána.")
+    messages.add_message(request, messages.INFO, "Note was deleted.")
     return redirect("index")  # Upravte název cesty podle vašich potřeb
 
 @login_required()
@@ -105,7 +106,7 @@ def delete_category(request, category_id):
     category = get_object_or_404(Category, id=category_id, user=request.user)
 
     category.delete()
-    messages.add_message(request, messages.INFO, "Kategorie byla smazána.")
+    messages.add_message(request, messages.INFO, "Category was deleted.")
     return redirect("note_categories")  # Upravte název cesty podle vašich potřeb
 
     
@@ -116,6 +117,7 @@ def registration(request):
 
         if form.is_valid():
             form.save()
+            messages.add_message(request, messages.INFO, "Registration was successful.")
             return redirect("login")
 
     else:

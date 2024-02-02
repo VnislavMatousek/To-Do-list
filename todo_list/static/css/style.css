@@ -121,6 +121,16 @@ nav ul li a:active {
     margin-bottom: 15px;
 }
 
-.maintext{
+.categories {
+    list-style: none; /* Odstraní výchozí odrážky seznamu */
+    padding: 0; /* Nulový odstup uvnitř seznamu */
+}
 
+.categories li {
+    display: inline-block; /* Každá položka jako inline-blok */
+    border: 1px solid black;
+    margin-right: 10px; /* Odsazení mezi jednotlivými buňkami */
+    margin-bottom: 10px;
+    padding: 10px;
+    max-width: 200px; /* Maximální šířka buňky */
 }

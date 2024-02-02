@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
 {% block content %}
-    <h2>Editace Kategorie</h2>
+    <h2>Edit category</h2>
     <form method="post" action=".">
         {% csrf_token %}
         {{ form.as_p }}
-        <a href="{% url "delete_category" category.id %}"> Smazat kategorii</a>
-        <button type="submit">Uložit změny</button>
+        <button type="submit">Save changes</button>
+        <button type="button"><a href="{% url "delete_category" category.id %}"> Delete category</a></button>
     </form>
 {% endblock %}

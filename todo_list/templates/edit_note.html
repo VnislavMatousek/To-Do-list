@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
-    <h2>Editace poznámky</h2>
+    <h2>Note edit</h2>
     <form method="post" action="{% url 'edit_note' note.id %}">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Uložit změny</button>
+        <button type="submit">Save changes</button>
     </form>
 {% endblock %}
