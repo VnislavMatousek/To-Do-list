@@ -62,6 +62,7 @@ nav ul li a {
     overflow: hidden;
     width: 121px;
     justify-content: center;
+    align-items: center;
 }
 
 nav ul li a {

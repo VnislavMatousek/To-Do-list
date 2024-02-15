@@ -53,7 +53,7 @@ def add_category(request):
 @login_required()
 def note_search(request):
     form = NoteSearchForm(request.GET)
-    notes = Note.objects.all()
+    notes = Note.objects.filter(user_id=request.user.id)
 
     if form.is_valid():
         title_query = form.cleaned_data.get('title')
